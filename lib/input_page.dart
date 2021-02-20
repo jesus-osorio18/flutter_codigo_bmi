@@ -84,6 +84,7 @@ class ReusableCard extends StatelessWidget {
             height:   20,
 
           ),
+          Text("Male"),
         ],
       ),
     );
