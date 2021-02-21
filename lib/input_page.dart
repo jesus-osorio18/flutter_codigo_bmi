@@ -4,9 +4,9 @@ import 'package:flutter_codigo_bmi/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-const activeCardColor = Color(0xff1B2440);
-const inactiveCardColor = Color(0xFF1A1B2B);
-const bottomContainerColor = Colors.greenAccent;
+const activeCardColor = Color(0xFF300216);
+const inactiveCardColor = Color(0xff4F0324);
+const bottomContainerColor = Color(0xff735562);
 const bottomContainerHeight = 80.0;
 
 enum Gender{
