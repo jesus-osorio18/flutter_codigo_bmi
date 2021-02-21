@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_bmi/icon_content.dart';
+import 'package:flutter_codigo_bmi/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-const activeCardColor = Colors.white54;
-const bottomContainerColor = Colors.white;
-const bottomContainerheight = 70.0;
+const activeCardColor = Color(0xff1B2440);
+const inactiveCardColor = Color(0xFF1A1B2B);
+const bottomContainerColor = Colors.greenAccent;
+const bottomContainerHeight = 80.0;
+
+enum Gender{
+  male,
+  female,
+  other
+}
+
 
 class InputPage extends StatefulWidget {
   @override
@@ -12,22 +22,50 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BMI CALCULATOR"),
+        title: Text("BMI CALCULATOR GITHUB"),
       ),
       body: Column(
         children: [
           Expanded(
             child: Row(
               children: [
+
                 Expanded(
-                  child: ReusableCard(color: activeCardColor),
+                  child: ReusableCard(
+                    color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                    childCard: IconContent(
+                      text: "MALE",
+                      icon: FontAwesomeIcons.mars,
+                    ),
+                    onPress: (){
+                      selectedGender = Gender.male;
+                      setState(() {
+                      });
+                    },
+                  ),
                 ),
+
                 Expanded(
-                  child: ReusableCard(color: activeCardColor),
+                  child: ReusableCard(
+                    color: selectedGender == Gender.female ? activeCardColor: inactiveCardColor,
+                    childCard: IconContent(
+                      text: "FEMALE",
+                      icon: FontAwesomeIcons.venus,
+                    ),
+                    onPress: (){
+                      selectedGender = Gender.female;
+                      setState(() {
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
@@ -36,7 +74,9 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(color: activeCardColor),
+                  child: ReusableCard(
+                    color: activeCardColor,
+                  ),
                 ),
               ],
             ),
@@ -45,48 +85,27 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(color: activeCardColor),
+                  child: ReusableCard(
+                    color: activeCardColor,
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(color: activeCardColor),
+                  child: ReusableCard(
+                    color: activeCardColor,
+                  ),
                 ),
               ],
             ),
           ),
           Container(
             color: bottomContainerColor,
-            height: bottomContainerheight,
+            height: bottomContainerHeight,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-          ),
+          )
         ],
       ),
     );
   }
 }
 
-class ReusableCard extends StatelessWidget {
-  final Color color;
-
-  ReusableCard({@required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.circular(17.0)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FaIcon( FontAwesomeIcons.venus, size: 60.0),
-          SizedBox(
-            height:   20,
-
-          ),
-          Text("Male"),
-        ],
-      ),
-    );
-  }
-}
