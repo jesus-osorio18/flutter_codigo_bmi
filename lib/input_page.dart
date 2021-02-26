@@ -2,19 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_codigo_bmi/icon_content.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_codigo_bmi/constants.dart';
 
-
-const activeCardColor = Color(0xFF300216);
-const inactiveCardColor = Color(0xff4F0324);
-const bottomContainerColor = Color(0xff735562);
-const bottomContainerHeight = 80.0;
-
-enum Gender{
-  male,
-  female,
-  other
-}
-
+enum Gender { male, female, other }
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,9 +12,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
-
   Gender selectedGender;
+  int height = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -37,33 +26,33 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                    color: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     childCard: IconContent(
                       text: "MALE",
                       icon: FontAwesomeIcons.mars,
                     ),
-                    onPress: (){
+                    onPress: () {
                       selectedGender = Gender.male;
-                      setState(() {
-                      });
+                      setState(() {});
                     },
                   ),
                 ),
-
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.female ? activeCardColor: inactiveCardColor,
+                    color: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
                     childCard: IconContent(
                       text: "FEMALE",
                       icon: FontAwesomeIcons.venus,
                     ),
-                    onPress: (){
+                    onPress: () {
                       selectedGender = Gender.female;
-                      setState(() {
-                      });
+                      setState(() {});
                     },
                   ),
                 ),
@@ -76,6 +65,40 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Height",
+                          style: labelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text(
+                              height.toString(),
+                              style: numberTextStyle,
+                            ),
+                            Text(
+                              "cm",
+                              style: labelTextStyle,
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          value: height.toDouble(),
+                          min: 10,
+                          max: 200,
+                          onChanged: (  double value){
+                            height=value.round();
+                            setState(() {
+
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -108,4 +131,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
