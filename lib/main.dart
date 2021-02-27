@@ -12,21 +12,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Color(0xff140109),
       debugShowCheckedModeBanner: false,
       title: "BMI Calculator",
       theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xff4F0324),
-        scaffoldBackgroundColor: Color(0xff140109),
-        sliderTheme:SliderTheme.of(context).copyWith(
-          activeTrackColor:Colors.white,
-          thumbColor: Colors.black,
-          overlayColor: Colors.pink.withOpacity(0.2),
+        primaryColor: Color(0xff111426),
+        scaffoldBackgroundColor: Color(0xff111426),
+        sliderTheme: SliderTheme.of(context).copyWith(
+          activeTrackColor: Colors.greenAccent,
+          thumbColor: Colors.greenAccent,
+          overlayColor: Colors.greenAccent.withOpacity(0.2),
           thumbShape: RoundSliderThumbShape(
-            enabledThumbRadius: 13.0,
+              enabledThumbRadius: 15.0
           ),
           overlayShape: RoundSliderOverlayShape(
-            overlayRadius: 20.0,
+            overlayRadius: 30.0,
           ),
         ),
       ),
@@ -34,5 +33,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
 
